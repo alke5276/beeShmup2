@@ -11,6 +11,8 @@ TagManager:
   - Projectile
   - EnemyProjectile
   - Bee
+  - Hive
+  - Wasp
   layers:
   - Default
   - TransparentFX
