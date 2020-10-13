@@ -49,7 +49,7 @@ public class DartScript : MonoBehaviour
         // when darts hit the wall
         if (other.gameObject.tag == "wall") // if we shoot a dart at a wall
         {
-            Destroy(this.gameObject);
+            Destroy(this.gameObject); // destroy dart
         }
         
         // when darts hit the wasp
@@ -59,9 +59,17 @@ public class DartScript : MonoBehaviour
             Destroy(this.gameObject); // destroy dart
         }
         
+        // when darts hit the wasp
         if (other.gameObject.tag == "Hive")
         {
-            return;
+            Destroy(this.gameObject); // destroy dart
+        }
+        
+        // dart hits another dart
+        if (other.gameObject.tag == "Projectile")
+        {
+            Destroy(other.gameObject); 
+            Destroy(this.gameObject); // destroy dart
         }
     }
 }

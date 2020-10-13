@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class WaspScript : MonoBehaviour
 {
@@ -8,11 +9,14 @@ public class WaspScript : MonoBehaviour
     private Rigidbody2D rb;
     private Vector2 movement;
     public float moveSpeed = 2f;
+    
+    //public Image healthBar;
 
     // Start is called before the first frame update
     void Start() 
     {
         hive = GameObject.Find("Hive");
+        // healthBar = Image.Find("HealthBar");
         rb = this.GetComponent<Rigidbody2D>();
     }
 
@@ -24,6 +28,7 @@ public class WaspScript : MonoBehaviour
 
         // make wasp face hive
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        angle += 160; // make wasps face better
         rb.rotation = angle;
         direction.Normalize();
         movement = direction;
@@ -47,9 +52,11 @@ public class WaspScript : MonoBehaviour
         if (other.gameObject.tag == "Hive") 
         {
             Destroy(this.gameObject); // destroy wasp
+            // PlayerScript.health -= .1f;
+            // healthBar.fillAmount = PlayerScript.health;
         }
 
-        // when darts hit the wasp
+        // when wasp hits bee
         if (other.gameObject.tag == "Bee")
         {
             Destroy(other.gameObject); // remove bee
