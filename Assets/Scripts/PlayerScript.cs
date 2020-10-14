@@ -48,7 +48,7 @@ public class PlayerScript : MonoBehaviour
         }
 
         // moving character right
-        if ((Input.GetKey(KeyCode.RightArrow)) || (Input.GetKey(KeyCode.S))) {
+        if ((Input.GetKey(KeyCode.RightArrow)) || (Input.GetKey(KeyCode.D))) {
             if (xPos < rightWall) {
                 xPos += speed;
             }
@@ -62,7 +62,7 @@ public class PlayerScript : MonoBehaviour
         }
         
         // moving character down
-        if ((Input.GetKey(KeyCode.DownArrow)) || (Input.GetKey(KeyCode.Z))) {
+        if ((Input.GetKey(KeyCode.DownArrow)) || (Input.GetKey(KeyCode.S))) {
             if (yPos > bottomWall) {
                 yPos -= speed;
             }
