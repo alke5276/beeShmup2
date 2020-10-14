@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+guid: e551ee664bf8047b78baef0777359ec4
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - Daisy: {fileID: 2134623094007627717, guid: a6a0c34cd230b4cacb15db9eab374f53, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
