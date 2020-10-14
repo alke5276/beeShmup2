@@ -30,8 +30,8 @@ public class PointAndShoot : MonoBehaviour // https://www.youtube.com/watch?v=7-
         
         if (Input.GetMouseButtonDown(0)) // left click to shoot darts
         {
-            //PlayerScript.animator.SetBool("isShooting", true);
-            //PlayerScript.animator.SetBool("isSmoking", false); // can't use smoke gun while shooting
+            PlayerScript.animator.SetBool("isShooting", true);
+            PlayerScript.animator.SetBool("isSmoking", false); // can't use smoke gun while shooting
             float distance = difference.magnitude;
             Vector2 direction = difference / distance;
             direction.Normalize();
@@ -43,8 +43,8 @@ public class PointAndShoot : MonoBehaviour // https://www.youtube.com/watch?v=7-
         
         if (Input.GetMouseButtonDown(1)) // right click to shoot smoke
         {
-            //PlayerScript.animator.SetBool("isSmoking", true);
-            //PlayerScript.animator.SetBool("isShooting", false); // can't use dart gun while smoking
+            PlayerScript.animator.SetBool("isSmoking", true);
+            PlayerScript.animator.SetBool("isShooting", false); // can't use dart gun while smoking
             float distance = difference.magnitude;
             Vector2 direction = difference / distance;
             direction.Normalize();
@@ -56,7 +56,7 @@ public class PointAndShoot : MonoBehaviour // https://www.youtube.com/watch?v=7-
     public void fireDart(Vector2 direction, float rotationZ)
     {
         GameObject b = Instantiate(dart) as GameObject;
-        b.transform.position = player.transform.position;
+        b.transform.position = muzzle.transform.position;
         b.transform.rotation = Quaternion.Euler(0.0f, 0.0f, rotationZ);
         b.GetComponent<Rigidbody2D>().velocity = direction * DartScript.speed;
     }
@@ -64,7 +64,7 @@ public class PointAndShoot : MonoBehaviour // https://www.youtube.com/watch?v=7-
     public void fireSmoke(Vector2 direction, float rotationZ)
     {
         GameObject b = Instantiate(smoke) as GameObject;
-        b.transform.position = player.transform.position;
+        b.transform.position = muzzle.transform.position;
         b.transform.rotation = Quaternion.Euler(0.0f, 0.0f, rotationZ);
         b.GetComponent<Rigidbody2D>().velocity = direction * DartScript.speed;
     }

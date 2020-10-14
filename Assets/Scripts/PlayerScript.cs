@@ -22,7 +22,7 @@ public class PlayerScript : MonoBehaviour
 
     private Rigidbody2D rb;
 
-    public Animator animator; // to animate character - https://www.youtube.com/watch?v=hkaysu1Z-N8
+    public static Animator animator; // to animate character - https://www.youtube.com/watch?v=hkaysu1Z-N8
 
     private void Start()
     {
