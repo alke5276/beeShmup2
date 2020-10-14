@@ -12,6 +12,8 @@ public class BeeScript : MonoBehaviour
     // public float speed = 2f;
     // public float amplitude = 0.5f;
     
+    public Animator animator; // to animate bee - https://www.youtube.com/watch?v=hkaysu1Z-N8
+    
     // Start is called before the first frame update
     void Start() 
     {
@@ -46,12 +48,14 @@ public class BeeScript : MonoBehaviour
     {
         if (DartScript.beeHit == true) // if the bees are agro
         {
-            moveBee(movement); // follow the character 
+            moveBee(movement); // follow the character
+            animator.SetBool("isHit", true);
         }
 
         if (DartScript.beeHit == false) // if bees are not agro
         {
             busyBee(); // buzz around
+            animator.SetBool("isHit", false);
         }
     }
 
@@ -61,6 +65,7 @@ public class BeeScript : MonoBehaviour
         rb.MovePosition((Vector2)transform.position + (direction * moveSpeed * Time.deltaTime));
     }
     
+    // bee just moving around hanging out, coming and going
     void busyBee() 
     {
         Vector2 Movement = new Vector2 (Random.Range(-5, 5), Random.Range(-4, 4));
@@ -71,13 +76,16 @@ public class BeeScript : MonoBehaviour
         // when bee gets to player
         if (other.gameObject.tag == "Player") 
         {
-            Destroy(this.gameObject); // destroy bee
+            if (DartScript.beeHit == true)
+            {
+                Destroy(this.gameObject); // destroy bee only when agro
+            }
         }
         
-        // when darts hit the wasp
-        if (other.gameObject.tag == "Bee")
+        // when bee gets to flower
+        if (other.gameObject.tag == "Daisy")
         {
-            Destroy(other.gameObject); // remove bee
+            Destroy(other.gameObject); // remove daisy
         }
     }
 }

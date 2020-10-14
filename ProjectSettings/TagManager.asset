@@ -13,6 +13,7 @@ TagManager:
   - Bee
   - Hive
   - Wasp
+  - Daisy
   layers:
   - Default
   - TransparentFX

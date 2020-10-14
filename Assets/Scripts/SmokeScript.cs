@@ -4,24 +4,23 @@ using UnityEngine;
 
 public class SmokeScript : MonoBehaviour
 {
-    public float speed = 2f;
+    public float speed = 5f;
     public int direction;
     private Rigidbody2D rb;
-    public bool beeHit2;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        StartCoroutine("Launch");
+        //StartCoroutine("Launch");
     }
     
-    private IEnumerator Launch() {
+    //private IEnumerator Launch() {
         //yield return new WaitForSeconds(1);
         //rb.AddForce(transform.right * -1);
-        rb.AddForce(transform.up * speed * direction);
-        yield return null;
-    }
+        //rb.AddForce(transform.up * speed * direction);
+        //yield return null;
+    //}
     
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -67,6 +66,12 @@ public class SmokeScript : MonoBehaviour
         if (other.gameObject.tag == "Projectile")
         {
             Destroy(other.gameObject); 
+            Destroy(this.gameObject); // destroy smoke
+        }
+        
+        // if smoke hits daisy
+        if (other.gameObject.tag == "Daisy")
+        {
             Destroy(this.gameObject); // destroy smoke
         }
     }

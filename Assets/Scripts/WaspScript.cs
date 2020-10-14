@@ -52,8 +52,8 @@ public class WaspScript : MonoBehaviour
         if (other.gameObject.tag == "Hive") 
         {
             Destroy(this.gameObject); // destroy wasp
-            // PlayerScript.health -= .1f;
-            // healthBar.fillAmount = PlayerScript.health;
+            PlayerScript.health -= .1f;
+            PlayerScript.healthBar.fillAmount = PlayerScript.health;
         }
 
         // when wasp hits bee

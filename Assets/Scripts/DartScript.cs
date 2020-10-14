@@ -2,35 +2,34 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DartScript : MonoBehaviour 
 {
-    public float speed = 2f;
+    public static float speed = 5f;
     public int direction;
     private Rigidbody2D rb;
-    static public bool beeHit;
+    public static bool beeHit;
+    
+    public float delay;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        StartCoroutine("Launch");
+        //StartCoroutine("Launch");
+        //delay = Time.delay;
     }
     
-    private IEnumerator Launch() {
+    //private IEnumerator Launch() {
         //yield return new WaitForSeconds(1);
         //rb.AddForce(transform.right * -1);
-        rb.AddForce(transform.up * speed * direction);
-        yield return null;
-    }
+        //rb.AddForce(transform.up * speed * direction);
+        //yield return null;
+    //}
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.tag == "Bee") // if another bee
-        { 
-            return;
-        }
-
         if (other.gameObject.tag == "Player") // if we hit the character, destroy the projectile
         { 
             Destroy(this.gameObject);
@@ -70,6 +69,20 @@ public class DartScript : MonoBehaviour
         {
             Destroy(other.gameObject); 
             Destroy(this.gameObject); // destroy dart
+        }
+        
+        // when dart hits flower
+        if (other.gameObject.tag == "Daisy")
+        {
+            Destroy(this.gameObject); // destroy dart
+        }
+
+        if (other.gameObject.tag == "Player")
+        {
+            //Destroy(this.gameObject); // destroy dart
+            Physics2D.IgnoreCollision(other.gameObject.GetComponent<Collider2D>(), GetComponent<Collider2D>());
+            Debug.Log("Hit player");
+            return;
         }
     }
 }
