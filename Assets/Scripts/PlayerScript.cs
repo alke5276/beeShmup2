@@ -9,12 +9,7 @@ public class PlayerScript : MonoBehaviour
     public float speed = .05f;
     public float leftWall, rightWall, bottomWall, topWall; 
     public static float health = 1f;
-    
-    //public GameObject projectile;
-    //public GameObject smoke;
-    //public KeyCode fireKey;
-    //public KeyCode smokeKey;
-    
+
     public static Image healthBar;
     
     private float yPos; // move character in up and down directions
@@ -46,49 +41,33 @@ public class PlayerScript : MonoBehaviour
         animator.SetFloat("Speed",Mathf.Abs(speed));
 
         // moving character left
-        if (Input.GetKey(KeyCode.LeftArrow)) {
+        if ((Input.GetKey(KeyCode.LeftArrow)) || (Input.GetKey(KeyCode.A))) {
             if (xPos > leftWall) {
                 xPos -= speed;
             }
         }
 
         // moving character right
-        if (Input.GetKey(KeyCode.RightArrow)) {
+        if ((Input.GetKey(KeyCode.RightArrow)) || (Input.GetKey(KeyCode.S))) {
             if (xPos < rightWall) {
                 xPos += speed;
             }
         }
         
         // moving character up
-        if (Input.GetKey(KeyCode.UpArrow)) {
+        if ((Input.GetKey(KeyCode.UpArrow)) || (Input.GetKey(KeyCode.W))) {
             if (yPos < topWall) {
                 yPos += speed;
             }
         }
         
         // moving character down
-        if (Input.GetKey(KeyCode.DownArrow)) {
+        if ((Input.GetKey(KeyCode.DownArrow)) || (Input.GetKey(KeyCode.Z))) {
             if (yPos > bottomWall) {
                 yPos -= speed;
             }
         }
 
-        // shooting darts here
-        //if (Input.GetKeyDown(fireKey))
-        //{
-            //animator.SetBool("isShooting", true);
-            //animator.SetBool("isSmoking", false); // can't use smoke gun while shooting
-            //Instantiate(projectile, new Vector2(transform.position.x, transform.position.y + 0.5f), Quaternion.identity);
-        //}
-        
-        // shooting smoke here
-        //if (Input.GetKeyDown(smokeKey))
-        //{
-            //animator.SetBool("isSmoking", true);
-            //animator.SetBool("isShooting", false); // can't use dart gun while smoking
-            //Instantiate(smoke, new Vector2(transform.position.x, transform.position.y + 0.5f), Quaternion.identity);
-        //}
-        
         // update location of character
         transform.localPosition = new Vector3(xPos, yPos, 0);
     }
